@@ -1,6 +1,8 @@
 import java.io.*;
 
 public class opg {
+	static char[] equ1 = new char[1100];
+	static char[] equ2 = new char[1100];
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -8,8 +10,7 @@ public class opg {
 		try{
 			FileReader reader = new FileReader(file);
 			int newchar;
-			char[] equ1 = new char[1100];
-			char[] equ2 = new char[1100];
+			
 			int ept1 = -1;
 			int ept2 = -1;
 			char rop;
@@ -96,62 +97,33 @@ public class opg {
 	}
 
 	public static int cmp(char fir,char sec) {
-		if(fir == '+') {
-			switch(sec) {
-				case '+':return 1;
-				case '*':return -1;
-				case 'i':return -1;
-				case '(':return -1;
-				case ')':return 1;
-				case '#':return 1;
-			}
-		} else if(fir == '*'){
-			switch(sec) {
-				case '+':return 1;
-				case '*':return 1;
-				case 'i':return -1;
-				case '(':return -1;
-				case ')':return 1;
-				case '#':return 1;
-			}
-		} else if(fir == 'i') {
-			switch(sec) {
-				case '+':return 1;
-				case '*':return 1;
-				case 'i':return 2;
-				case '(':return 2;
-				case ')':return 1;
-				case '#':return 1;
-			}
-		} else if(fir == '(') {
-			switch(sec) {
-				case '+':return -1;
-				case '*':return -1;
-				case 'i':return -1;
-				case '(':return -1;
-				case ')':return 0;
-				case '#':return 2;
-			}
-		} else if(fir == ')') {
-			switch(sec) {
-				case '+':return 1;
-				case '*':return 1;
-				case 'i':return 2;
-				case '(':return 2;
-				case ')':return 1;
-				case '#':return 1;
-			}
-		} else if(fir == '#') {
-			switch(sec) {
-			case '+':return -1;
-			case '*':return -1;
-			case 'i':return -1;
-			case '(':return -1;
-			case ')':return 2;
-			case '#':return 2;
-			} 
+		int  i=5,j=5;
+		switch(fir) {
+			case '+':i = 0;break;
+			case '*':i = 1;break;
+			case 'i':i = 2;break;
+			case '(':i = 3;break;
+			case ')':i = 4;break;
+			case '#':i = 5;break;
 		}
-		return 2;
+		switch(sec) {
+			case '+':j = 0;break;
+			case '*':j = 1;break;
+			case 'i':j = 2;break;
+			case '(':j = 3;break;
+			case ')':j = 4;break;
+			case '#':j = 5;break;
+		}
+		return fuhao(i,j);
 	} 
+	
+	public static int fuhao(int i,int j) {
+		int[][] arr = new int[6][6];
+		arr[0][0] = arr[1][0] = arr[2][0] = arr[4][0] = arr[1][1] = arr[2][1] = arr[4][1] = arr[0][4] = arr[1][4] = arr[2][4] = arr[4][4] = arr[0][5] = arr[1][5] = arr[2][5] = arr[4][5] = 1;
+		arr[0][1] = arr[0][2] = arr[0][3] = arr[1][2] = arr[1][3] = arr[3][0] = arr[3][1] = arr[3][2] = arr[3][3] = arr[5][0] = arr[5][1] = arr[5][2] = arr[5][3] = -1;
+		arr[2][2] = arr[2][3] = arr[3][5] = arr[4][2] = arr[4][3] = arr[5][4] = arr[5][5] = 2;
+		arr[3][4] = 0;
+		return arr[i][j];
+	}
 }
 
