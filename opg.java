@@ -53,7 +53,7 @@ public class opg {
                             }
                         }
                     }
-                    else {//由优先矩阵可以看到读入为左括号时优先级均为小于，故此处只能是右括号
+                    else {
                         ept1 --;
                         ept2 --;
                         if(equ1[ept1] != 'E')
