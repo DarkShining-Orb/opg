@@ -39,8 +39,7 @@ public class opg {
                             System.exit(0);
                         }
                         else{
-                            ept1 --;
-                            ept2 --;
+                            ept1-=2;
                             if(equ1[ept1] != 'E')
                             {
                                 System.out.println("RE");
@@ -81,7 +80,7 @@ public class opg {
                     equ2[++ept2] = rop;
                     System.out.println("I"+rop);
                 }
-                if (rop == '\r' && equ2[ept2] == '\r')
+                if (rop == '#' && equ2[ept2] == '#')
                 {
                     ept1 --;
                     break;
@@ -152,7 +151,7 @@ public class opg {
 			case '#':return 0;
 			} 
 		}
-		return 5;
+		return 2;
 	} 
 }
 
